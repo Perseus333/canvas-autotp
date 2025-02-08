@@ -32,9 +32,18 @@ function waitForElement(selector, callback, timeout = 10000) {
 }
 
 async function loadSecret() {
-    const currentDomain = window.location.hostname;
-    const secrets = await browser.storage.local.get([currentDomain]);
-    return secrets[currentDomain];
+    const currentHostname = window.location.hostname;
+    const currentBaseDomain = getBaseDomain(currentHostname);
+    const secrets = await browser.storage.local.get([currentBaseDomain]);
+    return secrets[currentBaseDomain];
+}
+
+function getBaseDomain(hostname) {
+    const parts = hostname.split('.');
+    if (parts.length > 2) {
+        return parts.slice(-2).join('.');
+    }
+    return hostname;
 }
 
 /* Stores the information, used by form.html */
