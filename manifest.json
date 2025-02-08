@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Canvas AuTOTP",
 	"version": "1.0",
-	"description": "Securely autofills 2FA codes for Canvas-based sites that support ADFS",
+	"description": "Autofill 2FA codes for Canvas-based sites that support ADFS",
 	"author": "Perseus Lynx",
 	"permissions": [
 		"storage",
