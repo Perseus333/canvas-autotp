@@ -1,3 +1,6 @@
+const observer = new MutationObserver(() => autofillTOTP());
+observer.observe(document.body, { childList: true, subtree: true });
+
 autofillTOTP();
 
 async function autofillTOTP() {
@@ -11,6 +14,8 @@ async function autofillTOTP() {
         if (form) form.submit();
     });
 }
+
+/* Helper functions */
 
 function waitForElement(selector, callback, timeout = 10000) {
     const start = Date.now();
@@ -32,11 +37,9 @@ async function loadSecret() {
     return data.secret;
 }
 
-const observer = new MutationObserver(() => autofillTOTP());
-observer.observe(document.body, { childList: true, subtree: true });
-
-
 /* Original code from totp-in-javascript by turistu */
+
+/* Start of turistu's code */
 
 async function totp(key, secs = 30, digits = 6){
 	return hotp(unbase32(key), pack64bu(Date.now() / 1000 / secs), digits);
@@ -71,3 +74,5 @@ function pack64bu(v){
 	d.setUint32(4, v);
 	return b;
 }
+
+/* End of turistu's code */
