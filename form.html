@@ -4,13 +4,14 @@
 	<meta charset=utf-8>
 	<meta name=viewport>
 	<link rel="stylesheet" href="form.css">
-	<script src="autotp.js" defer></script>
 	<body>
 		<p>Update secret for this website</p>
 		<input id="secret-input" type="text" name="secret-input" autocomplete="false" placeholder="paste here the secret">
 		<input id="secret-submit" type="button" name="secret-submit" value="Submit">
-		<p>
+		<div id="extra-buttons">
+			<input id="totp-copy" type="button" name="totp-copy" value="Copy Code">
 			<a href="https://github.com/Perseus333/canvas-autotp/">Help</a>
-		</p>
+		</div>
+		<script src="form.js" defer></script>
 	</body>
 </html>

@@ -1,3 +1,16 @@
 :root {
     font-family: sans-serif;
 }
+
+#extra-buttons {
+    margin-top: 0.5rem;
+    display: flex;
+}
+
+#extra-buttons > * {
+    flex: 1;
+}
+
+#extra-buttons > a {
+    text-align: right;
+}

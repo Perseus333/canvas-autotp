@@ -1,8 +1,6 @@
 const observer = new MutationObserver(() => autofillTOTP());
 observer.observe(document.body, { childList: true, subtree: true });
 
-autofillTOTP();
-
 async function autofillTOTP() {
     let key = await loadSecret();
     let code = await totp(key);
@@ -29,40 +27,6 @@ function waitForElement(selector, callback, timeout = 10000) {
             console.error(`Timeout: Element ${selector} not found`);
         }
     }, 500);
-}
-
-async function loadSecret() {
-    const currentHostname = window.location.hostname;
-    const currentBaseDomain = getBaseDomain(currentHostname);
-    const secrets = await browser.storage.local.get([currentBaseDomain]);
-    return secrets[currentBaseDomain];
-}
-
-function getBaseDomain(hostname) {
-    const parts = hostname.split('.');
-    if (parts.length > 2) {
-        return parts.slice(-2).join('.');
-    }
-    return hostname;
-}
-
-/* Stores the information, used by form.html */
-
-document.addEventListener('DOMContentLoaded', function() {
-    const submitButton = document.getElementById('secret-submit');
-    submitButton.addEventListener('click', function() {
-        browser.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            const currentTab = tabs[0];
-            const currentDomain = new URL(currentTab.url).hostname;
-            const secret = document.getElementById('secret-input').value;
-            updateSecret(currentDomain, secret);
-        });
-    });
-});
-
-async function updateSecret(domain, secret) {
-    await browser.storage.local.set({ [domain]: secret });
-    console.log("Secret updated!", domain, ": ", secret);
 }
 
 /* Original code from totp-in-javascript by turistu */
