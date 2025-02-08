@@ -14,8 +14,10 @@
 		"default_popup": "form.html#popup",
 		"default_area": "navbar"
 	},
-	"content_scripts": {
-		"matches": ["*://adfs.*/adfs/ls/*"],
-		"js": ["autotp.js"]
-	}
+	"content_scripts": [
+		{
+			"matches": ["*://*/adfs/ls/*"],
+			"js": ["autotp.js"]
+		}
+	]
 }
