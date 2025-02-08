@@ -1,6 +1,8 @@
 # Canvas AuTOTP
 
-*A browser extension that autofills 2FA TOTP codes for Canvas-based sites that support ADSF* 
+*A browser extension that autofills 2FA TOTP codes for Canvas-based sites that support ADSF*
+
+**Microsoft Authenticator bypass!!**
 
 ## Usage
 
