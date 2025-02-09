@@ -6,7 +6,7 @@
 	"author": "perseuslynx333@gmail.com",
 	"permissions": [
 		"storage",
-		"tabs"
+		"activeTab"
 	],
 	"action": {
 		"default_popup": "form.html"
