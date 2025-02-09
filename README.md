@@ -4,9 +4,17 @@
 
 **Microsoft Authenticator bypass!!**
 
+
 ## Usage
 
+>[!warning]
+>This WILL reduce the security of your account. 
+>You will be using the same device for something that is intended to use 2.
+>There is no secrets encryption as of v1.0 (for maximum convenience)
+
 You must only complete this steps once per site
+
+It takes 1-2 minutes.
 
 **(Important! Please follow)**
 
@@ -24,7 +32,22 @@ You must only complete this steps once per site
 10. Change "Default Sign-in method" by clicking on `Change` (above the sign-in methods but below the title)
 11. In the popup, click the downwards arrow and select `App based authentication or hardware token - code`
 12. Click `Confirm`
-13. Once you login in on your canvas site, it should automatically fill in the code and sign you in
+
+That's it! Once you login in on your canvas site, it should automatically fill in the code and sign you in.
+
+## How it works
+
+At the core it just autofills TOTP (Time-based One Time PINs).
+
+TOTP are generated from a secret, which must be initially provided by the login management server, in this case Microsoft. They are usually regenerated every 30 seconds. The TOTP generation functionality is borrowed from Turistu, for more information see [Credit](#Credit).
+
+What I have made is just a wrapper for that TOTP generation code, and automated it's generation and completion for Canvas-based sites.
+
+The program stores the secrets in the `Extension Storage`, and each secret is associated with a key of the domain that it works on.
+
+When you are in a website that contains `/adfs/ls/` in its url, the program interprets it as a Canvas login page and searches and tries to autocomplete the input to submit the TOTP. Once it does that, it automatically clicks the login button aswell.
+
+Since I wanted this extension to be a superset of TOTP, it also includes the ability to manually copy the TOTP codes.
 
 ## Credit
 
