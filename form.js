@@ -13,12 +13,12 @@ document.body.appendChild(messageBox);  // Adding message box to the body
 
 document.addEventListener('DOMContentLoaded', function() {
     submitButton.addEventListener('click', async function() {
-        let domainResponse = await browser.runtime.sendMessage({
+        let domainResponse = await chrome.runtime.sendMessage({
             action: "fetchDomain"
         });
         let currentDomain = await domainResponse.domain;
         const secret = document.getElementById('secret-input').value;
-        await browser.runtime.sendMessage({
+        await chrome.runtime.sendMessage({
             action: "updateSecret",
             data: [currentDomain, secret]
         });
@@ -29,11 +29,11 @@ document.addEventListener('DOMContentLoaded', function() {
         messageBox.style.color = "green";
     });
     copyButton.addEventListener('click', async function() {
-        let domainResponse = await browser.runtime.sendMessage({
+        let domainResponse = await chrome.runtime.sendMessage({
             action: "fetchDomain"
         });
         let currentDomain = domainResponse.domain;
-        let secretResponse = await browser.runtime.sendMessage({
+        let secretResponse = await chrome.runtime.sendMessage({
             action: "loadSecret",
             data: currentDomain
         });
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             copyButton.style.color = "red";
         }
         else {
-            let totpResponse = await browser.runtime.sendMessage({
+            let totpResponse = await chrome.runtime.sendMessage({
                 action: "totp",
                 data: key
             });

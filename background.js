@@ -5,17 +5,17 @@ Handles the shared functions
 */
 
 async function updateSecret(domain, secret) {
-    await browser.storage.local.set({ [domain]: secret });
+    await chrome.storage.local.set({ [domain]: secret });
     console.log("Secret updated!", domain, ": ", secret);
 }
 
 async function loadSecret(domain) {
-    const secrets = await browser.storage.local.get(domain);
+    const secrets = await chrome.storage.local.get(domain);
     return secrets[domain];
 }
 
 async function fetchDomain() {
-    const [tab] = await browser.tabs.query({ active: true, currentWindow: true });
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const url = new URL(tab.url);
     const domain = url.hostname;
     return domain;
@@ -23,7 +23,7 @@ async function fetchDomain() {
 
 /* Handling message requests */
 
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "loadSecret") {
         let domain = message.data;
         loadSecret(domain).then(secret => {

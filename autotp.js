@@ -9,10 +9,10 @@ const observer = new MutationObserver(() => autofillTOTP());
 observer.observe(document.body, { childList: true, subtree: true });
 
 async function autofillTOTP() {
-    let currentDomain = await browser.runtime.sendMessage({
+    let currentDomain = await chrome.runtime.sendMessage({
         action: "fetchDomain"
     });
-    let secretResponse = await browser.runtime.sendMessage({
+    let secretResponse = await chrome.runtime.sendMessage({
         action: "loadSecret",
         data: currentDomain.domain
     });
@@ -21,7 +21,7 @@ async function autofillTOTP() {
         console.log("No secret found for this domain.");
         return;
     }
-    let totpResponse = await browser.runtime.sendMessage({
+    let totpResponse = await chrome.runtime.sendMessage({
         action: "totp",
         data: secret
     });

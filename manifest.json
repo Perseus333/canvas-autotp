@@ -1,20 +1,14 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Canvas AuTOTP",
 	"version": "1.0",
 	"description": "Autofill 2FA codes for Canvas-based sites that support ADFS",
-	"author": "Perseus Lynx",
+	"author": "perseuslynx333@gmail.com",
 	"permissions": [
 		"storage",
 		"tabs"
 	],
-	"browser_specific_settings": {
-		"gecko": {
-			"id": "canvas-autotp@perseuslynx.dev",
-			"strict_min_version": "67.0"
-		}
-	},
-	"browser_action": {
+	"action": {
 		"default_popup": "form.html"
 	},
 	"content_scripts": [
@@ -24,7 +18,7 @@
 		}
 	],
 	"background": {
-		"scripts": ["background.js"]
+		"service_worker": "background.js"
 	},
 	"icons": {
 		"16": "icons/16.png",
