@@ -1,3 +1,5 @@
+<img src="icons/original.png" style="width: 200px">
+
 # Canvas AuTOTP
 
 *A browser extension that autofills 2FA TOTP codes for Canvas-based sites that support ADSF*
