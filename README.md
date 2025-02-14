@@ -1,4 +1,4 @@
-<img src="icons/original.png" style="width: 200px">
+<img src="icons/128.png">
 
 # Canvas AuTOTP
 
